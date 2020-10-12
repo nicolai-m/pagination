@@ -15,7 +15,7 @@ $pagination->browse();
 ```
 
 
-### Twig beispiel für die Funktion "browse()"
+### Twig Beispiel für die Funktion "browse()"
 ```TWIG
 <nav aria-label="Page navigation">
     <ul class="pagination">
