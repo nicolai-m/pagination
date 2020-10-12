@@ -5,8 +5,6 @@
  * @link https://nicolai.maliske.net
  */
 
-namespace App\Controller;
-
 class Pagination
 {
     /** @var int */
@@ -24,7 +22,7 @@ class Pagination
     /**
      * @return array
      */
-    public function getLimitsResult(): array
+    public function getLimits(): array
     {
         $entriesPerPage = (empty($this->entriesPerPage))? 1 : $this->entriesPerPage;
         $totalEntries = (empty($this->totalEntries))? 1 : $this->totalEntries;
