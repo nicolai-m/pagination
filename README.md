@@ -1,4 +1,5 @@
 # Pagination
+
 ---
 https://nicolai.maliske.net
 
@@ -6,16 +7,41 @@ https://nicolai.maliske.net
 ```PHP
 $pagination = new Pagination();
 
-$pagination->setCurrentPage(1) // (INT) Aktuelle Seite
-$pagination->setTotalEntries(600) // (INT) Anzahl aller einträge (z.B. aus einer Datenbank Tabelle)
+$pagination->setCurrentPage(5); // (INT) Aktuelle Seite
+$pagination->setTotalEntries(600); // (INT) Anzahl aller einträge (z.B. aus einer Datenbank Tabelle)
 $pagination->setEntriesPerPage(25); // (INT) Einträge pro Seite, wie viele Einträge angezeigt werden sollen.
 
 $pagination->getLimits(); // (Return Array) Beispiel: ['current' => 1, 'offset' => 0, 'maxPage' => 25];
-$pagination->browse();
+$result = $pagination->browse();
 ```
 
+### browse() Ergebnis
+Beispiel: http://localhost/test.php?page=5
 
-### Twig Beispiel für die Funktion "browse()"
+```
+Array
+(
+    [prePages] => 3
+    [preLinks] => Array
+        (
+            [2] => 2
+            [1] => 3
+            [0] => 4
+        )
+
+    [nextPages] => 3
+    [nextLinks] => Array
+        (
+            [0] => 6
+            [1] => 7
+            [2] => 8
+        )
+
+    [currentPage] => 5
+)
+```
+
+### Twig Beispiel für die ausgabe bei "browse()"
 ```TWIG
 <nav aria-label="Page navigation">
     <ul class="pagination">

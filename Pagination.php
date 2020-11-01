@@ -19,10 +19,7 @@ class Pagination
     /** @var int */
     private $parts;
 
-    /**
-     * @return array
-     */
-    public function getLimits(): array
+    public function getLimits()
     {
         $entriesPerPage = (empty($this->entriesPerPage))? 1 : $this->entriesPerPage;
         $totalEntries = (empty($this->totalEntries))? 1 : $this->totalEntries;
@@ -31,17 +28,16 @@ class Pagination
         $this->parts = $parts;
         $currentPage = $this->currentPage($parts);
 
-        $current = 0;
-        $offset = $entriesPerPage;
+        $offset = 0;
+        $limit = $entriesPerPage;
 
         if($currentPage === 1) {
-            return ['current' => $current, 'offset' => $offset, 'maxPage' => $parts];
+            return ['limit' => $limit, 'offset' => $offset, 'maxPage' => $parts];
         }
 
-        $offset = $entriesPerPage;
-        $current = ($currentPage * $entriesPerPage) - $entriesPerPage;
+        $offset = ($currentPage * $entriesPerPage) - $entriesPerPage;
 
-        return ['current' => $current, 'offset' => $offset, 'maxPage' => $parts];
+        return ['limit' => $limit, 'offset' => $offset, 'maxPage' => $parts];
     }
 
     /**
@@ -62,7 +58,7 @@ class Pagination
             $browsePage['preLinks'][$y] = $this->currentPage - $j;
             $y++;
         }
-        
+
         $z = 0;
         for ($i = 1; $i <= $nextPrevious; $i++) {
             if($this->parts == $this->currentPage) break;
